@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>كل الفعاليات | دليل فعاليات SVU</title>
+
+    <meta name="description" content="قائمة بكل فعاليات الجامعة مع البحث والفلترة.">
+    <!-- Bootstrap و الأيقونات عبر CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- رأس الصفحة: الشعار + اسم الدليل + شريط التنقل -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark main-navbar">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                    <img src="assets/img/LOGO.png" alt="شعار دليل الفعاليات" width="45" height="45">
+                    <span>دليل فعاليات SVU</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="فتح القائمة">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <!-- الصنف active يوضع فقط على رابط الصفحة الحالية -->
+                    <ul class="navbar-nav me-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="events.html">كل الفعاليات</a></li>
+                        <li class="nav-item"><a class="nav-link" href="event.html">تفاصيل الفعالية</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+                        <li class="nav-item ms-lg-2 my-2 my-lg-0">
+                            <!-- زر الوضع الليلي -->
+                            <button id="themeToggle" type="button" class="btn btn-outline-light btn-sm"
+                                aria-label="تبديل الوضع الليلي" title="الوضع الليلي">
+                                <i class="bi bi-moon-stars"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <h2 class="fw-bold mb-4">قائمة الفعاليات</h2>
+
+        <!-- شريط أدوات البحث والفلترة: الاسم، التصنيف، التاريخ، الموقع -->
+        <div class="card p-3 mb-4 bg-light border-0">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" id="searchInput" class="form-control" placeholder="ابحث باسم الفعالية...">
+                </div>
+                <div class="col-md-6">
+                    <select id="categoryFilter" class="form-select" aria-label="التصنيف">
+                        <option value="all">كل التصنيفات</option>
+                        <option value="culture">ثقافة</option>
+                        <option value="sports">رياضة</option>
+                        <option value="music">موسيقى</option>
+                        <option value="tech">تقنية</option>
+                        <option value="art">فنون</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="date" id="dateFilter" class="form-control" aria-label="اختر تاريخ الفعالية">
+                </div>
+                <div class="col-md-6">
+                    <select id="locationFilter" class="form-select" aria-label="الموقع">
+                        <option value="all">كل المواقع</option>
+                        <option value="online">أونلاين</option>
+                        <option value="maze">المزة</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- رسالة تظهر عند عدم وجود نتائج -->
+        <div id="noResultsMessage" class="alert alert-warning text-center d-none" role="alert">
+            عذرًا، لم يتم العثور على أي فعالية مطابقة لبحثك.
+        </div>
+
+        <!-- قائمة الفعاليات -->
+        <div class="row g-4" id="eventsContainer">
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="culture" data-date="2026-11-01"
+                    data-location="online">
+                    <div class="card h-100">
+                        <img src="assets/img/english.jpeg" class="card-img-top" alt="نادي اللغة الأجنبية">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-primary mb-2 align-self-start">ثقافة</span>
+                            <h5 class="card-title">نادي اللغة الأجنبية</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 1/11/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> أونلاين</p>
+                            <p class="card-text">ورشة تدريبية مخصصة للطلاب لدعم اللغة الإنكليزية محادثة.</p>
+                            <a href="event.html?id=1" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="sports" data-date="2026-11-02"
+                    data-location="maze">
+                    <div class="card h-100">
+                        <img src="assets/img/robic.jpeg" class="card-img-top" alt="كورس خوارزميات مكعب الروبك">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-success mb-2 align-self-start">رياضة</span>
+                            <h5 class="card-title">كورس خوارزميات مكعب الروبك</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 2/11/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> المزة</p>
+                            <p class="card-text">بطولة دورية تعزز الذكاء البرمجي وتسهّل التفكير بالخوارزميات.</p>
+                            <a href="event.html?id=2" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="tech" data-date="2026-11-03"
+                    data-location="maze">
+                    <div class="card h-100">
+                        <img src="assets/img/python.png" class="card-img-top" alt="البرمجة وبناء التطبيقات بلغة بايثون">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-danger mb-2 align-self-start">تقنية</span>
+                            <h5 class="card-title">البرمجة وبناء التطبيقات بلغة بايثون</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 3/11/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> المزة</p>
+                            <p class="card-text">حلول برمجية حديثة وطرق قوية لبناء التطبيقات.</p>
+                            <a href="event.html?id=3" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="music" data-date="2026-11-04"
+                    data-location="online">
+                    <div class="card h-100">
+                        <img src="assets/img/mont.jpeg" class="card-img-top" alt="مسابقة الإنتاج الموسيقي والهندسة الصوتية">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-warning text-dark mb-2 align-self-start">موسيقى</span>
+                            <h5 class="card-title">مسابقة الإنتاج الموسيقي والهندسة الصوتية</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 4/11/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> أونلاين</p>
+                            <p class="card-text">مسابقة تستهوي الطلاب المهتمين بالتكنولوجيا والموسيقى الرقمية.</p>
+                            <a href="event.html?id=4" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="art" data-date="2026-11-10"
+                    data-location="online">
+                    <div class="card h-100">
+                        <img src="assets/img/Grafic.jpeg" class="card-img-top" alt="التصميم الجرافيكي والبوسترات">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-art mb-2 align-self-start">فنون</span>
+                            <h5 class="card-title">التصميم الجرافيكي والبوسترات</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 10/11/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> أونلاين</p>
+                            <p class="card-text">تصاميم بصرية، ملصقات توعوية أو فنية، وتصاميم الهوية البصرية.</p>
+                            <a href="event.html?id=6" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="tech" data-date="2026-12-04"
+                    data-location="online">
+                    <div class="card h-100">
+                        <img src="assets/img/AI.jpeg" class="card-img-top" alt="معرض الذكاء الاصطناعي">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-danger mb-2 align-self-start">تقنية</span>
+                            <h5 class="card-title">معرض الذكاء الاصطناعي</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 4/12/2026</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> أونلاين</p>
+                            <p class="card-text">استعراض مشاريع وتطبيقات تعتمد على الذكاء الاصطناعي.</p>
+                            <a href="event.html?id=7" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 event-card-item" data-category="tech" data-date="2027-01-04"
+                    data-location="online">
+                    <div class="card h-100">
+                        <img src="assets/img/UI.jpeg" class="card-img-top" alt="معرض التصميم الرقمي UI/UX">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-danger mb-2 align-self-start">تقنية</span>
+                            <h5 class="card-title">معرض التصميم الرقمي UI/UX</h5>
+                            <p class="text-muted small mb-1"><i class="bi bi-calendar-event"></i> 4/1/2027</p>
+                            <p class="text-muted small"><i class="bi bi-geo-alt"></i> أونلاين</p>
+                            <p class="card-text">عرض تصاميم واجهات التطبيقات والمواقع وتجربة المستخدم.</p>
+                            <a href="event.html?id=5" class="btn btn-outline-primary btn-sm mt-auto">التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </main>
+
+    <!-- زر العودة للأعلى -->
+    <button id="btnScrollTop" type="button" class="btn btn-primary shadow" aria-label="العودة إلى أعلى الصفحة">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- تذييل الصفحة: معلومات التواصل + حقوق النشر + روابط السوشيال -->
+    <footer class="py-4 mt-5">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <!-- الشعار فوق اسم الدليل والنبذة تحته -->
+                <div class="col-md-4 mb-4">
+                    <img src="assets/img/LOGO..png" alt="شعار الدليل" width="160" height="160" class="footer-logo mb-3">
+                    <h5 class="fw-bold">دليل فعاليات الجامعة الافتراضية</h5>
+                    <p class="small footer-text mb-0">منصة شاملة لمتابعة كافة الأنشطة والندوات الجامعية.</p>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">روابط سريعة</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="events.html"><i class="bi bi-chevron-left"></i> الفعاليات</a></li>
+                        <li class="mb-2"><a href="about.html"><i class="bi bi-chevron-left"></i> عن الدليل</a></li>
+                        <li class="mb-2"><a href="contact.html"><i class="bi bi-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">تواصل معنا</h6>
+                    <p class="small mb-1"><i class="bi bi-envelope"></i>
+                        <a href="mailto:info@svuonline.org">info@svuonline.org</a>
+                    </p>
+                    <p class="small mb-3"><i class="bi bi-telephone"></i> <span dir="ltr">+963 949087115</span></p>
+                    <!-- أيقونات بدل كتابة اسم الموقع -->
+                    <a href="https://www.facebook.com/svuonline.org" target="_blank" class="social-icon"
+                        aria-label="فيسبوك" title="فيسبوك"><i class="bi bi-facebook"></i></a>
+                    <a href="https://svuonline.org" target="_blank" class="social-icon" aria-label="موقع الجامعة"
+                        title="موقع الجامعة"><i class="bi bi-globe"></i></a>
+                    <a href="mailto:info@svuonline.org" class="social-icon" aria-label="البريد الإلكتروني"
+                        title="البريد الإلكتروني"><i class="bi bi-envelope-fill"></i></a>
+                </div>
+            </div>
+            <hr class="my-3 border-secondary">
+            <p class="text-center small mb-0">&copy; 2026 الجامعة الافتراضية السورية SVU. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
